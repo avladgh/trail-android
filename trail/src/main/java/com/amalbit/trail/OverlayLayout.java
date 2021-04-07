@@ -39,12 +39,10 @@ public class OverlayLayout extends FrameLayout implements GooglemapProvider {
 
     routeOverlayView = new RouteOverlayView(context);
     routeOverlayView.setLayoutParams(matchParentParams);
-    routeOverlayView.addGoogleMapProvider(this);
     addView(routeOverlayView);
 
     viewOverlayView = new ViewOverlayView(context);
     viewOverlayView.setLayoutParams(matchParentParams);
-    viewOverlayView.addGoogleMapProvider(this);
     addView(viewOverlayView);
   }
 
@@ -67,11 +65,11 @@ public class OverlayLayout extends FrameLayout implements GooglemapProvider {
 
 
   public void onCameraMoved(){
-    if (googleMapWeakReference != null &&
-        googleMapWeakReference.get() != null) {
-      routeOverlayView.onCameraMove();
-      viewOverlayView.onCameraMove();
-    }
+//    if (googleMapWeakReference != null &&
+//        googleMapWeakReference.get() != null) {
+//      routeOverlayView.onCameraMove();
+//      viewOverlayView.onCameraMove();
+//    }
   }
 
   @Nullable

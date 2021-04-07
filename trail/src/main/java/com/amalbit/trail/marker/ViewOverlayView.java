@@ -110,11 +110,6 @@ public class ViewOverlayView extends View implements MarkerRemoveListener, Overl
   }
 
   @Override
-  public void addGoogleMapProvider(GooglemapProvider googleMapProvider) {
-    this.googleMapProvider = googleMapProvider;
-  }
-
-  @Override
   public void onMapReady() {
     initializeLatLngPerPixel();
     updatePixelPerZoom();
@@ -122,16 +117,15 @@ public class ViewOverlayView extends View implements MarkerRemoveListener, Overl
   }
 
   @Override
-  public void onCameraMove() {
+  public void onCameraMove(Projection projection, CameraPosition cameraPosition) {
     if (isGoogleMapNotNull() && anchorMarker != null) {
-      GoogleMap googleMap = googleMapProvider.getGoogleMapWeakReference().get();
-      zoomLevel = googleMap.getCameraPosition().zoom;
+      zoomLevel = cameraPosition.zoom;
 
       updatePixelPerZoom();
       updateMarkerPointsOnScreen();
 
-      anchorMarker.setLatLng(googleMap.getCameraPosition().target);
-      anchorMarker.setScreenPoint(googleMap.getProjection()
+      anchorMarker.setLatLng(cameraPosition.target);
+      anchorMarker.setScreenPoint(projection
           .toScreenLocation(anchorMarker.getLatLng()));
       invalidate();
     }
