@@ -58,15 +58,15 @@ public class RouteOverlayView extends View implements OverlayView {
     }
 
     private void setUpDebugProps() {
-//        debugGridPaing.setColor(Color.GRAY);
-//        debugGridPaing.setStyle(Paint.Style.FILL_AND_STROKE);
+        debugGridPaing.setColor(Color.GRAY);
+        debugGridPaing.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     private void calculateDimensionForDebugGrid() {
-//        debugNumColumns = getWidth() / 20;
-//        debugNumRows = getHeight() / 20;
-//        debugCellWidth = getWidth() / debugNumColumns;
-//        debugCellHeight = getHeight() / debugNumRows;
+        debugNumColumns = getWidth() / 20;
+        debugNumRows = getHeight() / 20;
+        debugCellWidth = getWidth() / debugNumColumns;
+        debugCellHeight = getHeight() / debugNumRows;
         invalidate();
     }
 
@@ -127,7 +127,7 @@ public class RouteOverlayView extends View implements OverlayView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         synchronized (mSvgLock) {
-            drawPathBorder(canvas);
+//            drawPathBorder(canvas);
             drawRoute(canvas);
         }
     }

@@ -5,76 +5,64 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+
 import com.amalbit.trail.contract.GooglemapProvider;
 import com.amalbit.trail.marker.ViewOverlayView;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.Projection;
+import com.google.android.gms.maps.model.CameraPosition;
+
 import java.lang.ref.WeakReference;
 
-public class OverlayLayout extends FrameLayout implements GooglemapProvider {
+public class OverlayLayout extends FrameLayout {
 
-  @Nullable
-  private WeakReference<GoogleMap> googleMapWeakReference;
+    private RouteOverlayView routeOverlayView;
 
-  private RouteOverlayView routeOverlayView;
+    private ViewOverlayView viewOverlayView;
 
-  private ViewOverlayView viewOverlayView;
+    public OverlayLayout(@NonNull Context context) {
+        super(context);
+        init(context);
+    }
 
-  public OverlayLayout(@NonNull Context context) {
-    super(context);
-    init(context);
-  }
+    public OverlayLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init(context);
+    }
 
-  public OverlayLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-    super(context, attrs);
-    init(context);
-  }
+    public OverlayLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context);
+    }
 
-  public OverlayLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-    init(context);
-  }
+    private void init(Context context) {
+        LayoutParams matchParentParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
-  private void init(Context context) {
-    LayoutParams matchParentParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        routeOverlayView = new RouteOverlayView(context);
+        routeOverlayView.setLayoutParams(matchParentParams);
+        addView(routeOverlayView);
 
-    routeOverlayView = new RouteOverlayView(context);
-    routeOverlayView.setLayoutParams(matchParentParams);
-    addView(routeOverlayView);
+        viewOverlayView = new ViewOverlayView(context);
+        viewOverlayView.setLayoutParams(matchParentParams);
+        addView(viewOverlayView);
+    }
 
-    viewOverlayView = new ViewOverlayView(context);
-    viewOverlayView.setLayoutParams(matchParentParams);
-    addView(viewOverlayView);
-  }
+    public void onMapReady() {
+        viewOverlayView.onMapReady();
+        routeOverlayView.onMapReady();
+    }
 
-  public void addGoogleMap(GoogleMap googleMap) {
-    this.googleMapWeakReference = new WeakReference<>(googleMap);
-  }
+    public RouteOverlayView getRouteOverlayView() {
+        return routeOverlayView;
+    }
 
-  public void onMapReady() {
-    viewOverlayView.onMapReady();
-    routeOverlayView.onMapReady();
-  }
-
-  public RouteOverlayView getRouteOverlayView() {
-    return routeOverlayView;
-  }
-
-  public ViewOverlayView getViewOverlayView() {
-    return viewOverlayView;
-  }
+    public ViewOverlayView getViewOverlayView() {
+        return viewOverlayView;
+    }
 
 
-  public void onCameraMoved(){
-//    if (googleMapWeakReference != null &&
-//        googleMapWeakReference.get() != null) {
-//      routeOverlayView.onCameraMove();
-//      viewOverlayView.onCameraMove();
-//    }
-  }
-
-  @Nullable
-  @Override
-  public WeakReference<GoogleMap> getGoogleMapWeakReference() {
-    return googleMapWeakReference;
-  }
+    public void onCameraMoved(Projection projection, CameraPosition cameraPosition) {
+        routeOverlayView.onCameraMove(projection, cameraPosition);
+        viewOverlayView.onCameraMove(projection, cameraPosition);
+    }
 }
