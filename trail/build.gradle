@@ -1,54 +1,26 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
-
-group = 'com.amalbit.trail'
-version = '0.2.0'
-
-//group='com.github.amalChandran'
-
-ext {
-  bintrayRepo = 'Trail'
-  bintrayName = 'Trail'
-
-  publishedGroupId = 'com.amalbit.trail'
-  libraryName = 'trail'
-  artifact = 'trail'
-
-  libraryDescription = 'Projection based route animation on google maps.'
-
-  siteUrl = 'https://github.com/amalChandran/google-maps-route-animation'
-  gitUrl = 'https://github.com/amalChandran/google-maps-route-animation.git'
-
-  libraryVersion = version
-
-  developerId = 'developerId'
-  developerName = 'Amal'
-  developerEmail = 'precisely.amal@email.com'
-
-  licenseName = 'The Apache Software License, Version 2.0'
-  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-  allLicenses = ["Apache-2.0"]
-}
+group = 'com.github.avladgh'
 
 android {
-  compileSdkVersion 26
+    compileSdkVersion 26
 
-  defaultConfig {
-    minSdkVersion 16
-    targetSdkVersion 26
-    versionCode 4
-    versionName "1.53"
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 4
+        versionName "1.53"
 
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-  }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -59,19 +31,18 @@ android {
 def playServicesVersion = '16.1.0'
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
-  api "com.google.android.gms:play-services-maps:$playServicesVersion"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api "com.google.android.gms:play-services-maps:$playServicesVersion"
 
-  testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.2'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 bintray {
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 repositories {
     mavenCentral()
 }
