@@ -2,7 +2,7 @@ package com.amalbit.animationongooglemap;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import com.amalbit.animationongooglemap.polylineBased.MapsActivity;
 import com.amalbit.animationongooglemap.projectionBased.CabsActivity;

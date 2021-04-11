@@ -3,50 +3,53 @@ package com.amalbit.trail.marker;
 import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+
 import com.google.android.gms.maps.model.LatLng;
 
 public class OverlayMarker {
 
-  public static int count = 0;
+    public static int count = 0;
 
-  private int markerId = -1;
+    private int markerId = -1;
 
-  private LatLng latLng;
+    private LatLng latLng;
 
-  private float bearing;
+    private float bearing;
 
-  private float mapBearing;
+    private float mapBearing;
 
-  private Bitmap icon;
+    private Bitmap icon;
 
-  private Point screenPoint;
+    private Point screenPoint;
 
-  private MarkerRemoveListner markerRemoveListner;
+    private MarkerRemoveListner markerRemoveListner;
 
-  private OnMarkerUpdate onMarkerUpdate;
+    private OnMarkerUpdate onMarkerUpdate;
 
-  private ValueAnimator translateValueAnimator;
+    private ValueAnimator translateValueAnimator;
 
-  private ValueAnimator rotateValueAnimator;
+    private ValueAnimator rotateValueAnimator;
 
-  public LatLng getLatLng() {
-    return latLng;
-  }
+    public AnchorView2 anchorView2;
 
-  public void setLatLng(LatLng latLng) {
-    if (onMarkerUpdate!= null) onMarkerUpdate.onMarkerUpdate();
-    this.latLng = latLng;
-  }
+    public LatLng getLatLng() {
+        return latLng;
+    }
 
-  public Bitmap getIcon() {
-    return icon;
-  }
+    public void setLatLng(LatLng latLng) {
+        if (onMarkerUpdate != null) onMarkerUpdate.onMarkerUpdate();
+        this.latLng = latLng;
+    }
 
-  public void setIcon(Bitmap icon) {
-    this.icon = icon;
-  }
+    public Bitmap getIcon() {
+        return icon;
+    }
 
-  public void rotateIcon(float degrees) {
+    public void setIcon(Bitmap icon) {
+        this.icon = icon;
+    }
+
+    public void rotateIcon(float degrees) {
 //    int width = icon.getWidth();
 //    int height = icon.getHeight();
 //
@@ -55,93 +58,93 @@ public class OverlayMarker {
 //
 //    Bitmap scaledBitmap = Bitmap.createScaledBitmap(icon, width, height, true);
 //    icon = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
-  }
-
-  public Point getScreenPoint() {
-    return screenPoint;
-  }
-
-  public void setScreenPoint(Point screenPoint) {
-    this.screenPoint = screenPoint;
-  }
-
-  public MarkerRemoveListner getMarkerRemoveListner() {
-    return markerRemoveListner;
-  }
-
-  public void setMarkerRemoveListner(MarkerRemoveListner markerRemoveListner) {
-    this.markerRemoveListner = markerRemoveListner;
-  }
-
-  public void remove() {
-    if (markerRemoveListner != null) {
-      markerRemoveListner.onRemove(this);
     }
-  }
 
-  public int getMarkerId() {
-    return markerId;
-  }
-
-  public void setMarkerId(int markerId) {
-    this.markerId = markerId;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
+    public Point getScreenPoint() {
+        return screenPoint;
     }
-    if (!OverlayMarker.class.isAssignableFrom(obj.getClass())) {
-      return false;
+
+    public void setScreenPoint(Point screenPoint) {
+        this.screenPoint = screenPoint;
     }
-    final OverlayMarker objectToBeCompared = (OverlayMarker) obj;
-    return this.markerId == objectToBeCompared.markerId;
-  }
 
-  public OnMarkerUpdate getOnMarkerUpdate() {
-    return onMarkerUpdate;
-  }
+    public MarkerRemoveListner getMarkerRemoveListner() {
+        return markerRemoveListner;
+    }
 
-  public void setOnMarkerUpdate(OnMarkerUpdate onMarkerUpdate) {
-    this.onMarkerUpdate = onMarkerUpdate;
-  }
+    public void setMarkerRemoveListner(MarkerRemoveListner markerRemoveListner) {
+        this.markerRemoveListner = markerRemoveListner;
+    }
 
-  public interface MarkerRemoveListner {
-    void onRemove(OverlayMarker overlayMarker);
-  }
+    public void remove() {
+        if (markerRemoveListner != null) {
+            markerRemoveListner.onRemove(this);
+        }
+    }
 
-  public interface OnMarkerUpdate {
-    public void onMarkerUpdate();
-  }
+    public int getMarkerId() {
+        return markerId;
+    }
 
-  public float getBearing() {
-    return bearing - mapBearing;
-  }
+    public void setMarkerId(int markerId) {
+        this.markerId = markerId;
+    }
 
-  public void setBearing(float bearing) {
-    this.bearing = bearing;
-  }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!OverlayMarker.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+        final OverlayMarker objectToBeCompared = (OverlayMarker) obj;
+        return this.markerId == objectToBeCompared.markerId;
+    }
 
-  public void setMapBearing(float mapBearing) {
-    this.mapBearing = mapBearing;
-  }
+    public OnMarkerUpdate getOnMarkerUpdate() {
+        return onMarkerUpdate;
+    }
 
-  public ValueAnimator getTranslateValueAnimator() {
-    return translateValueAnimator;
-  }
+    public void setOnMarkerUpdate(OnMarkerUpdate onMarkerUpdate) {
+        this.onMarkerUpdate = onMarkerUpdate;
+    }
 
-  public void setTranslateValueAnimator(ValueAnimator translateValueAnimator) {
-    this.translateValueAnimator = translateValueAnimator;
-  }
+    public interface MarkerRemoveListner {
+        void onRemove(OverlayMarker overlayMarker);
+    }
 
-  public ValueAnimator getRotateValueAnimator() {
-    return rotateValueAnimator;
-  }
+    public interface OnMarkerUpdate {
+        public void onMarkerUpdate();
+    }
 
-  public void setRotateValueAnimator(ValueAnimator rotateValueAnimator) {
-    this.rotateValueAnimator = rotateValueAnimator;
-  }
+    public float getBearing() {
+        return bearing - mapBearing;
+    }
+
+    public void setBearing(float bearing) {
+        this.bearing = bearing;
+    }
+
+    public void setMapBearing(float mapBearing) {
+        this.mapBearing = mapBearing;
+    }
+
+    public ValueAnimator getTranslateValueAnimator() {
+        return translateValueAnimator;
+    }
+
+    public void setTranslateValueAnimator(ValueAnimator translateValueAnimator) {
+        this.translateValueAnimator = translateValueAnimator;
+    }
+
+    public ValueAnimator getRotateValueAnimator() {
+        return rotateValueAnimator;
+    }
+
+    public void setRotateValueAnimator(ValueAnimator rotateValueAnimator) {
+        this.rotateValueAnimator = rotateValueAnimator;
+    }
 
 //  private Bitmap rotateBitmap(Bitmap bitmap, float bearing) {
 //

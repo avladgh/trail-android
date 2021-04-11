@@ -93,16 +93,6 @@ public class ViewOverlayActivity extends BaseActivity implements OnMapReadyCallb
       viewOverlayView.post(
           () -> repeat.startUpdates()
       );
-
-      OverlayPolyline normalOverlayPolyline = new OverlayPolyline.Builder(mRouteOverlayView)
-          .setRouteType(RouteType.PATH)
-          .setCameraPosition(mMap.getCameraPosition())
-          .setProjection(mMap.getProjection())
-          .setLatLngs(route)
-          .setBottomLayerColor(Color.YELLOW)
-          .setTopLayerColor(Color.RED)
-          .create();
-
     });
   }
 
