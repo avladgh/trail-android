@@ -16,12 +16,6 @@
     android:id="@+id/mapMarkerOverlayView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!--    <com.amalbit.trail.marker.AnchorView2-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="80dp" />-->
+
   </com.amalbit.trail.marker.MarkerOverlayView>
 </androidx.constraintlayout.widget.ConstraintLayout>

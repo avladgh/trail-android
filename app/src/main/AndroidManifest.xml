@@ -13,21 +13,14 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="AllowBackup">
-    <activity android:name=".projectionBased.ViewOverlayActivity">
-    </activity>
 
-    <meta-data
+      <meta-data
       android:name="com.google.android.geo.API_KEY"
       android:value="@string/google_maps_key"/>
 
     <activity
       android:label="@string/title_activity_maps"
       android:name=".polylineBased.MapsActivity"/>
-    <activity
-      android:label="@string/title_activity_projection"
-      android:name=".projectionBased.OverlayRouteActivity"
-      android:theme="@style/OverlayActivityTheme">
-    </activity>
     <activity android:name=".HomeActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>

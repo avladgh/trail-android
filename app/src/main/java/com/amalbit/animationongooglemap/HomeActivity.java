@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import com.amalbit.animationongooglemap.polylineBased.MapsActivity;
 import com.amalbit.animationongooglemap.projectionBased.CabsActivity;
-import com.amalbit.animationongooglemap.projectionBased.OverlayRouteActivity;
-import com.amalbit.animationongooglemap.projectionBased.ViewOverlayActivity;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,14 +30,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
       case R.id.btn_polyline:
         startActivity(new Intent(HomeActivity.this, MapsActivity.class));
         break;
-      case R.id.btn_projection:
-        startActivity(new Intent(HomeActivity.this, OverlayRouteActivity.class));
-        break;
       case R.id.btn_cabs:
         startActivity(new Intent(HomeActivity.this, CabsActivity.class));
-        break;
-      case R.id.btnViewOverly:
-        startActivity(new Intent(HomeActivity.this, ViewOverlayActivity.class));
         break;
     }
   }

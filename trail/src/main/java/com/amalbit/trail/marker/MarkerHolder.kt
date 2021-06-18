@@ -1,23 +1,53 @@
 package com.amalbit.trail.marker
 
-import android.support.constraint.ConstraintLayout
-import android.view.View.generateViewId
-import android.widget.FrameLayout
+import android.graphics.Point
+import android.view.View
+import com.google.android.gms.maps.model.LatLng
 
-class MarkerHolder(val anchorView: AnchorView) {
-    val layoutHolder: FrameLayout
+class MarkerHolder {
+    var markerId = -1
 
-    init {
-        anchorView.id = generateViewId()
-        layoutHolder = FrameLayout(anchorView.context)
+    var latLng: LatLng? = null
+        set(latLng) {
+            onMarkerUpdate?.onMarkerUpdate()
+            field = latLng
+        }
+
+    var bearing = 0f
+        get() = field - mapBearing
+
+    var mapBearing = 0f
+
+    var screenPoint: Point? = null
+    var markerRemoveListner: MarkerRemoveListner? = null
+    var onMarkerUpdate: OnMarkerUpdate? = null
+
+    var view: View? = null
+
+    fun remove() {
+        markerRemoveListner?.onRemove(this)
     }
 
-    fun getLayoutParams(): ConstraintLayout.LayoutParams {
-        val lp = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
-        lp.bottomToBottom = anchorView.id
-        lp.topToTop = anchorView.id
-        lp.leftToLeft = anchorView.id
-        lp.rightToRight = anchorView.id
-        return lp
+    override fun equals(obj: Any?): Boolean {
+        if (obj == null) {
+            return false
+        }
+        if (!MarkerHolder::class.java.isAssignableFrom(obj.javaClass)) {
+            return false
+        }
+        val objectToBeCompared = obj as MarkerHolder
+        return markerId == objectToBeCompared.markerId
+    }
+
+    override fun hashCode(): Int {
+        return markerId
+    }
+
+    interface MarkerRemoveListner {
+        fun onRemove(markerHolder: MarkerHolder?)
+    }
+
+    interface OnMarkerUpdate {
+        fun onMarkerUpdate()
     }
 }
